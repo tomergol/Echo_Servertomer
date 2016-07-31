@@ -91,7 +91,7 @@ bool Socket::connect(const string host, const int port)
         return false;
     m_addr.sin_family = AF_INET;
     m_addr.sin_port = htons (port);
-    inet_pton(AF_INET, host.c_str(), &m_addr.sin_addr);
+    int status = inet_pton(AF_INET, host.c_str(), &m_addr.sin_addr);
     if(errno == EAFNOSUPPORT)
         return false;
     if(::connect(m_sock, (sockaddr *) &m_addr, sizeof(m_addr)))

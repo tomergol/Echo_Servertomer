@@ -1,11 +1,26 @@
-#include "mainwindow.h"
-#include <QApplication>
+#include "server.h"
 
-int main(int argc, char *argv[])
+//int main(int argc, char *argv[])
+int main()
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    //QCoreApplication a(argc, argv);
+    cout << "Start";
 
-    return a.exec();
+        Server s(3939);
+
+        while(true)
+        {
+            Server new_sock();
+            s.accept((Socket)new_sock);
+
+                while(true)
+                {
+                    string data;
+                    data = new_sock.resv_massage();
+                    new_sock.send_massage(data);
+                }
+
+        }
+    return 0;
+    //  return a.exec();
 }
